@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+  <title>Books</title>
+</head>
+<body>
+    <div class="wrapper_header">
+        <header class="header">
+            <h1 class="title_header">Books that I have lent to friends</h1>
+        </header>
+    </div>
+<div id="app">
+    <div class="wrapper_main">
+        <main class="main">
+           <div v-show="showModal" class="filter"></div>
+            <div class="modal">
+                <div v-show="showModal" class="modal-content">
+                    <div class="wrapper_title">
+                        <h3 class="modal-title">Lending a book away</h3>
+                    </div>
+                    <div class="book">
+                        <input id="title_book" placeholder="Title of the book:" type="text" v-model="new_book.bookName">
+                    </div>
+                    <div class="friend">
+                        <input id="title_friend" placeholder="Lent to friend:" type="text" v-model="new_book.friend">
+                    </div>
+                    <div class="author">
+                        <input id="title_author" placeholder="Author" type="text" v-model="new_book.author">
+                    </div>
+                    <div class="until">
+                        <input id="title_until" placeholder="Until:" type="date" v-model="new_book.until">
+                    </div>
+                    <div class="checkbox" v-show="showCheckbox">
+                        <input id="title_checkbox" type="checkbox" v-model="checkbox">
+                        <label for="title_checkbox">Book has been returned back</label>
+                    </div>
+                     <div class="buttons">
+                         <button type="button" class="cancel" @click="cancelModal()">Cancel</button>
+                         <button type="button" class="save" @click="add_book()">Save</button>
+                     </div> 
+                 </div>
+            </div>
+            <div class="total_info">
+                <div class="total_book">{{"You have lent " + books.length + " books to friends"}}</div>
+                <div class="total_lent">Lent to:</div>
+            </div>
+            <ul class="book_list">
+                <book @change_book="showChangeModal(index)" :data="data" v-for="(data, index,) in books" :key="index"></book>
+            </ul>
+        </main>
+    </div>
+    <div class="wrapper_footer">
+        <footer class="footer">
+            <button type="button" @click="showModalWindow()" class="add_book"> <img src="img/plus.png" alt="plus" class="icon_footer">Lend a new book away</button>
+        </footer>
+    </div>
+</div>
+<script src="js/vue.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
